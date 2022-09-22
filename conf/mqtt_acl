@@ -1,0 +1,6 @@
+user bc4p
+topic deny cmnd/#
+topic readwrite #
+topic readwrite stat/#
+topic readwrite shellies/#
+topic readwrite tele/#

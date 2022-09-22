@@ -37,18 +37,28 @@ services:
     depends_on:
       - influxdb
 
-#  mqtt-broker:
-#    container_name: mqtt-broker-bc4p
-#    image: eclipse-mosquitto:2
-#    restart: always
-#    volumes:
-#      - ./conf/mqtt.conf:/mosquitto/config/mosquitto.conf
-#      - ./data/mosquitto:/mosquitto/data
-#      - ./conf/passwd:/mosquitto/passwd
-#    ports:
-#      - "1883:1883/tcp"
-#    healthcheck:
-#      test: "mosquitto_sub -t '$$SYS/#' -C 1 | grep -v Error || exit 1"
-#      interval: 45s
-#      timeout: 5s
-#      retries: 5
+  mqtt-broker:
+    container_name: mqtt-broker-bc4p
+    image: eclipse-mosquitto:2
+    restart: always
+    volumes:
+      - ./conf/mqtt.conf:/mosquitto/config/mosquitto.conf
+      - ./data/mosquitto:/mosquitto/data
+      - ./conf/passwd:/mosquitto/passwd
+    ports:
+      - "1883:1883/tcp"
+    healthcheck:
+      test: "mosquitto_sub -t '$$SYS/#' -C 1 | grep -v Error || exit 1"
+      interval: 45s
+      timeout: 5s
+      retries: 5
+
+  public_grafana:
+    image: grafana/grafana-oss:latest
+    container_name: public_grafana
+    restart: always
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+      - ./conf/grafana.ini:/etc/grafana/grafana.ini
+    ports:
+      - 3030:3000
