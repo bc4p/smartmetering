@@ -5,6 +5,13 @@ It can be used to monitor the power usage of virtually any device with internet 
 
 For a public monitoring solution, the MQTT broker has to be accessible from the internet.
 
+Add a .env file like this:
+
+```
+INFLUXDB_PASSWORD="XXX"
+INFLUX_USER_PASSWORD="USER_PASSWORD"
+```
+
 ## MQTT
 
 The MQTT broker is installed using a given user.
@@ -37,3 +44,4 @@ The public key must be exchanged on installation.
 After this, the integrity of the reported values can be controlled.
 
 This concept is currently used for german chargingstations (Eichrecht).
+
