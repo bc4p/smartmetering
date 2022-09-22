@@ -45,6 +45,7 @@ services:
       - ./conf/mqtt.conf:/mosquitto/config/mosquitto.conf
       - ./data/mosquitto:/mosquitto/data
       - ./conf/passwd:/mosquitto/passwd
+      - ./conf/acl:/mosquitto/acl
     ports:
       - "1883:1883/tcp"
     healthcheck:
