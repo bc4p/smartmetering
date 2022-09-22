@@ -1,5 +1,6 @@
 user bc4p
 topic deny cmnd/#
+topic deny shellies/+/relay/+/command
 topic readwrite #
 topic readwrite stat/#
 topic readwrite shellies/#
