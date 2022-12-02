@@ -2,7 +2,7 @@ version: '3'
 services:
   influxdb:
     image: influxdb:1.8-alpine
-    container_name: influxdb-bc4p
+    container_name: influxdb-smart
     restart: always
     volumes:
       - ./data/influxdb:/var/lib/influxdb
@@ -23,7 +23,7 @@ services:
 
   telegraf:
     image: telegraf:alpine
-    container_name: telegraf-bc4p
+    container_name: telegraf-smart
     hostname: telle
     restart: always
     user: telegraf:998
@@ -31,6 +31,7 @@ services:
     volumes:
       - ./conf/telegraf.conf:/etc/telegraf/telegraf.conf
       - /:/hostfs:ro
+      - /var/run/utmp:/var/run/utmp:ro
     environment:
       - HOST_MOUNT_PREFIX=/hostfs
       - HOST_PROC=/hostfs/proc    
@@ -38,7 +39,7 @@ services:
       - influxdb
 
   mqtt-broker:
-    container_name: mqtt-broker-bc4p
+    container_name: mqtt-broker-smart
     image: eclipse-mosquitto:2
     restart: always
     volumes:
@@ -56,7 +57,7 @@ services:
 
   public_grafana:
     image: grafana/grafana-oss:latest
-    container_name: public_grafana
+    container_name: grafana-smart
     restart: always
     volumes:
       - ./data/grafana:/var/lib/grafana
