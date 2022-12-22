@@ -62,5 +62,8 @@ services:
     volumes:
       - ./data/grafana:/var/lib/grafana
       - ./conf/grafana.ini:/etc/grafana/grafana.ini
+    environment:
+      - GF_SECURITY_ALLOW_EMBEDDING=True
+      - GF_AUTH_ANONYMOUS_ENABLED=True
     ports:
       - 3030:3000
